@@ -169,3 +169,8 @@ Original prompt: Build a classic Snake game in this repo.
 - Converted iOS touch dock action buttons (Rotate/Drop/Hold/Left/Down/Right) to icon labels on coarse-pointer devices while keeping desktop text labels.
 - Reworked Hold/Next preview rendering to a normalized 4x4 grid per piece to prevent line-break/layout glitches on iPhone Safari.
 - Updated preview/touch CSS to align with the new fixed-grid rendering and clearer icon touch targets.
+
+## Progress update 27
+- Switched mobile icon set to Google-provided Material Symbols Rounded via Google Fonts.
+- Replaced utility/touch emoji icons with Material icon names and icon-only rendering on coarse-pointer devices.
+- Added icon-specific button styles for consistent size/alignment on iOS.

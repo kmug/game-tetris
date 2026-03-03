@@ -44,6 +44,7 @@ const nextEls = Array.from(document.querySelectorAll("[data-next-index]"));
 const holdEl = document.querySelector("[data-hold-piece]");
 const touchEl = document.querySelector(".touch");
 const touchButtons = Array.from(document.querySelectorAll(".touch-dock [data-action]"));
+const utilityButtons = [restartBtn, pauseBtn, soundBtn];
 
 const CELL = canvas.width / WIDTH;
 
@@ -436,12 +437,12 @@ function renderPieceToPanel(element, pieceType) {
 
 function updateTouchButtonLabels(isCoarse) {
   const iconMap = {
-    rotate: "⟲",
-    drop: "⤓",
-    hold: "✋",
-    left: "◀",
-    down: "▼",
-    right: "▶",
+    rotate: "rotate_right",
+    drop: "keyboard_double_arrow_down",
+    hold: "back_hand",
+    left: "arrow_back",
+    down: "arrow_downward",
+    right: "arrow_forward",
   };
   const labelMap = {
     rotate: "Rotate",
@@ -455,10 +456,36 @@ function updateTouchButtonLabels(isCoarse) {
   for (const button of touchButtons) {
     const action = button.dataset.action;
     if (!action) continue;
-    button.textContent = isCoarse ? iconMap[action] : labelMap[action];
-    button.title = labelMap[action];
-    button.setAttribute("aria-label", labelMap[action]);
+    setButtonLabel(button, labelMap[action], iconMap[action], isCoarse);
   }
+}
+
+function setButtonLabel(button, label, iconName, useIconOnly) {
+  button.title = label;
+  button.setAttribute("aria-label", label);
+  button.classList.toggle("icon-only", useIconOnly);
+  if (useIconOnly) {
+    button.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">${iconName}</span>`;
+    return;
+  }
+  button.textContent = label;
+}
+
+function updateUtilityButtonLabels(isCoarse) {
+  const utilityLabel = {
+    restart: "Restart",
+    pause: state.paused ? "Resume" : "Pause",
+    sound: soundEnabled ? "Sound on" : "Sound off",
+  };
+  const utilityIcon = {
+    restart: "restart_alt",
+    pause: state.paused ? "play_arrow" : "pause",
+    sound: soundEnabled ? "volume_up" : "volume_off",
+  };
+
+  setButtonLabel(restartBtn, utilityLabel.restart, utilityIcon.restart, isCoarse);
+  setButtonLabel(pauseBtn, utilityLabel.pause, utilityIcon.pause, isCoarse);
+  setButtonLabel(soundBtn, utilityLabel.sound, utilityIcon.sound, isCoarse);
 }
 
 function render() {
@@ -471,22 +498,9 @@ function render() {
   linesEl.textContent = String(state.lines);
   levelEl.textContent = String(state.level);
   statusEl.textContent = statusText();
+  for (const button of utilityButtons) button.classList.remove("icon-only");
   updateTouchButtonLabels(isCoarse);
-  if (isCoarse) {
-    restartBtn.textContent = "↺";
-    restartBtn.title = "Restart";
-    pauseBtn.textContent = state.paused ? "▶" : "⏸";
-    pauseBtn.title = state.paused ? "Resume" : "Pause";
-    soundBtn.textContent = soundEnabled ? "🔊" : "🔇";
-    soundBtn.title = soundEnabled ? "Sound on" : "Sound off";
-  } else {
-    restartBtn.textContent = "Restart";
-    restartBtn.title = "Restart";
-    pauseBtn.textContent = state.paused ? "Resume" : "Pause";
-    pauseBtn.title = state.paused ? "Resume" : "Pause";
-    soundBtn.textContent = soundEnabled ? "Sound On" : "Sound Off";
-    soundBtn.title = soundEnabled ? "Sound on" : "Sound off";
-  }
+  updateUtilityButtonLabels(isCoarse);
 }
 
 function processHorizontalRepeat(dt) {

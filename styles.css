@@ -222,6 +222,18 @@ button {
   box-shadow: 0 4px 12px rgba(52, 84, 138, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
+button .material-symbols-rounded {
+  font-size: 1.35rem;
+  line-height: 1;
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
+}
+
+button.icon-only {
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
 button:active {
   transform: translateY(1px);
   box-shadow: 0 2px 8px rgba(52, 84, 138, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -412,6 +424,10 @@ button:focus-visible {
     font-weight: 700;
     line-height: 1;
     padding: 0;
+  }
+
+  .touch-dock button .material-symbols-rounded {
+    font-size: 1.52rem;
   }
 
   .hint {
