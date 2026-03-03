@@ -1,0 +1,92 @@
+name: Bug report
+description: Report a gameplay, UI, audio, or deployment issue.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill out the details below.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Where did you find the issue?
+      options:
+        - Gameplay
+        - Controls
+        - Audio
+        - UI/Visual
+        - Mobile
+        - Deployment/Pages
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+      placeholder: Describe the bug clearly.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps so we can reproduce.
+      placeholder: |
+        1. Open ...
+        2. Press ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: e.g. Safari 18, Chrome 122
+      placeholder: Safari 18 on macOS
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device/OS
+      description: e.g. iPhone 15 iOS 18, macOS 15
+      placeholder: macOS 15
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors (optional)
+      description: Paste any browser console errors.
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context (optional)
+      description: Screenshots, recordings, or extra notes.

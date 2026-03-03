@@ -138,3 +138,7 @@ Original prompt: Build a classic Snake game in this repo.
 - Switched deployment strategy to non-Actions GitHub Pages.
 - Removed Actions Pages workflow file to avoid repeated Setup Pages failures.
 - Repository now ready for Pages deployment from `main` branch root.
+
+## Progress update 22
+- Added `README.md` with run instructions, controls, live URL, deployment and file map.
+- Added GitHub bug report issue template at `.github/ISSUE_TEMPLATE/bug_report.yml`.
