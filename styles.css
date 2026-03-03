@@ -14,6 +14,7 @@
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 10px;
+  --touch-dock-h: 164px;
 }
 
 * {
@@ -150,14 +151,7 @@ h1 {
   padding: 0.45rem;
 }
 
-.hold-panel h2 {
-  margin: 0 0 0.4rem;
-  font-size: 0.94rem;
-  font-weight: 620;
-  letter-spacing: -0.01em;
-  color: #24324b;
-}
-
+.hold-panel h2,
 .next-panel h2 {
   margin: 0 0 0.4rem;
   font-size: 0.94rem;
@@ -279,18 +273,74 @@ button:focus-visible {
 }
 
 @media (pointer: coarse) {
-  .touch {
-    display: grid;
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .app {
+    width: min(100vw, 680px);
+    margin: 0 auto;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
+  }
+
+  .controls {
+    position: sticky;
+    bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.5rem);
+    z-index: 20;
+    background: rgba(244, 250, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.35rem;
+    border-radius: 14px;
   }
 
   .controls button {
-    min-height: 44px;
+    min-height: 46px;
+    flex: 1;
+  }
+
+  .touch {
+    display: grid;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.65rem 0.8rem calc(env(safe-area-inset-bottom) + 0.65rem);
+    background: linear-gradient(to top, rgba(232, 242, 255, 0.95), rgba(232, 242, 255, 0.72));
+    border-top: 1px solid rgba(164, 186, 214, 0.48);
+    box-shadow: 0 -8px 24px rgba(27, 56, 109, 0.12);
+  }
+
+  .touch-row {
+    grid-column: 1 / -1;
+    gap: 0.55rem;
+  }
+
+  .touch button {
+    min-height: 58px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .hint {
+    margin-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom));
   }
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .app,
-  .next-panel {
+  .next-panel,
+  .hold-panel {
     background: rgba(255, 255, 255, 0.9);
   }
 }

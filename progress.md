@@ -142,3 +142,12 @@ Original prompt: Build a classic Snake game in this repo.
 ## Progress update 22
 - Added `README.md` with run instructions, controls, live URL, deployment and file map.
 - Added GitHub bug report issue template at `.github/ISSUE_TEMPLATE/bug_report.yml`.
+
+## Progress update 23
+- Improved iOS/mobile touch ergonomics:
+  - Added `viewport-fit=cover`.
+  - Added bottom fixed touch dock with safe-area inset support.
+  - Increased touch button size and spacing for finger input.
+  - Reserved app bottom padding to avoid control overlap.
+  - Reduced scroll/bounce interference on coarse-pointer devices.
+  - Kept desktop keyboard flow unchanged.
