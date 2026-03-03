@@ -114,6 +114,9 @@ h1 {
 .play-area {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 122px;
+  grid-template-areas:
+    "board side"
+    "utility utility";
   gap: 0.68rem;
   align-items: start;
 }
@@ -124,6 +127,7 @@ h1 {
 }
 
 #game {
+  grid-area: board;
   width: 100%;
   max-width: 420px;
   height: auto;
@@ -142,6 +146,10 @@ h1 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 0.45rem;
+}
+
+.utility-controls {
+  grid-area: utility;
 }
 
 .hold-panel h2,
@@ -250,6 +258,10 @@ button:focus-visible {
 
   .play-area {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "board"
+      "side"
+      "utility";
   }
 
   .side-panels {
@@ -285,7 +297,7 @@ button:focus-visible {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    padding-bottom: calc(var(--touch-dock-h) + var(--utility-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
+    padding-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
   }
 
   h1 {
@@ -304,19 +316,22 @@ button:focus-visible {
   }
 
   .play-area {
-    grid-template-columns: 1fr;
-    gap: 0.42rem;
+    grid-template-columns: 64px minmax(0, 1fr) 110px;
+    grid-template-areas: "utility board side";
+    gap: 0.34rem;
+    align-items: start;
   }
 
   #game {
-    width: min(64vw, 292px);
+    width: min(58vw, 252px);
     max-width: none;
     margin: 0 auto;
   }
 
   .side-panels {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.32rem;
+    grid-area: side;
+    grid-template-columns: 1fr;
+    gap: 0.26rem;
   }
 
   .next-stack {
@@ -325,30 +340,29 @@ button:focus-visible {
   }
 
   .next-piece {
-    min-height: 34px;
+    min-height: 30px;
     padding: 0.12rem;
   }
 
   .utility-controls {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom));
-    z-index: 32;
-    display: flex;
-    justify-content: center;
-    gap: 0.45rem;
+    grid-area: utility;
+    position: sticky;
+    top: 0.2rem;
+    z-index: 12;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.26rem;
     margin: 0;
-    padding: 0.4rem 0.7rem;
-    background: linear-gradient(to top, rgba(232, 242, 255, 0.9), rgba(232, 242, 255, 0.68));
-    border-top: 1px solid rgba(164, 186, 214, 0.35);
+    padding: 0;
+    background: transparent;
+    border: 0;
   }
 
   .utility-controls button {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    min-height: 42px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 50%;
     padding: 0;
     font-size: 1rem;

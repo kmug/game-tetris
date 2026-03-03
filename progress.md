@@ -158,3 +158,9 @@ Original prompt: Build a classic Snake game in this repo.
   - Converted utility controls (Restart/Pause/Sound) into small circular icon buttons on a separate fixed strip above touch dock.
   - Increased reserved bottom space so controls do not overlap game board.
   - Reduced mobile board footprint further for better touch area.
+
+## Progress update 25
+- Repositioned iOS utility buttons to the left of the game board.
+- Repositioned Hold/Next panels to the right of the game board on iOS.
+- Switched mobile layout to 3-column structure (utility | board | side) without overlaying the playfield.
+- Kept bottom touch dock fixed and separate.
