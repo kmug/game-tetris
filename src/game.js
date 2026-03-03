@@ -417,6 +417,7 @@ function renderPieceToPanel(element, pieceType) {
 }
 
 function render() {
+  const isCoarse = window.matchMedia("(pointer: coarse)").matches;
   drawBoard();
   renderNextPanel();
   renderPieceToPanel(holdEl, state.heldType);
@@ -425,8 +426,21 @@ function render() {
   linesEl.textContent = String(state.lines);
   levelEl.textContent = String(state.level);
   statusEl.textContent = statusText();
-  pauseBtn.textContent = state.paused ? "Resume" : "Pause";
-  soundBtn.textContent = soundEnabled ? "Sound On" : "Sound Off";
+  if (isCoarse) {
+    restartBtn.textContent = "↺";
+    restartBtn.title = "Restart";
+    pauseBtn.textContent = state.paused ? "▶" : "⏸";
+    pauseBtn.title = state.paused ? "Resume" : "Pause";
+    soundBtn.textContent = soundEnabled ? "🔊" : "🔇";
+    soundBtn.title = soundEnabled ? "Sound on" : "Sound off";
+  } else {
+    restartBtn.textContent = "Restart";
+    restartBtn.title = "Restart";
+    pauseBtn.textContent = state.paused ? "Resume" : "Pause";
+    pauseBtn.title = state.paused ? "Resume" : "Pause";
+    soundBtn.textContent = soundEnabled ? "Sound On" : "Sound Off";
+    soundBtn.title = soundEnabled ? "Sound on" : "Sound off";
+  }
 }
 
 function processHorizontalRepeat(dt) {

@@ -15,6 +15,7 @@
   --radius-md: 12px;
   --radius-sm: 10px;
   --touch-dock-h: 164px;
+  --utility-dock-h: 54px;
 }
 
 * {
@@ -133,15 +134,7 @@ h1 {
   display: block;
 }
 
-.next-panel {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--stroke-soft);
-  background: rgba(255, 255, 255, 0.46);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 0.45rem;
-}
-
+.next-panel,
 .hold-panel {
   border-radius: var(--radius-lg);
   border: 1px solid var(--stroke-soft);
@@ -292,7 +285,7 @@ button:focus-visible {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    padding-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
+    padding-bottom: calc(var(--touch-dock-h) + var(--utility-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
   }
 
   h1 {
@@ -316,7 +309,7 @@ button:focus-visible {
   }
 
   #game {
-    width: min(66vw, 300px);
+    width: min(64vw, 292px);
     max-width: none;
     margin: 0 auto;
   }
@@ -336,26 +329,33 @@ button:focus-visible {
     padding: 0.12rem;
   }
 
-  .controls {
+  .utility-controls {
     position: fixed;
-    left: 0.6rem;
-    right: 0.6rem;
-    bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.45rem);
-    z-index: 20;
-    background: rgba(244, 250, 255, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.28rem;
-    border-radius: 12px;
-    border: 1px solid rgba(164, 186, 214, 0.38);
-    gap: 0.32rem;
+    left: 0;
+    right: 0;
+    bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom));
+    z-index: 32;
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.4rem 0.7rem;
+    background: linear-gradient(to top, rgba(232, 242, 255, 0.9), rgba(232, 242, 255, 0.68));
+    border-top: 1px solid rgba(164, 186, 214, 0.35);
   }
 
-  .controls button {
-    min-height: 40px;
-    flex: 1;
-    font-size: 0.83rem;
-    padding: 0.35rem 0.45rem;
+  .utility-controls button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    display: grid;
+    place-items: center;
   }
 
   .touch-dock {
@@ -367,8 +367,8 @@ button:focus-visible {
     z-index: 30;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.55rem;
-    padding: 0.65rem 0.8rem calc(env(safe-area-inset-bottom) + 0.65rem);
-    background: linear-gradient(to top, rgba(232, 242, 255, 0.95), rgba(232, 242, 255, 0.72));
+    padding: 0.55rem 0.8rem calc(env(safe-area-inset-bottom) + 0.6rem);
+    background: linear-gradient(to top, rgba(232, 242, 255, 0.95), rgba(232, 242, 255, 0.74));
     border-top: 1px solid rgba(164, 186, 214, 0.48);
     box-shadow: 0 -8px 24px rgba(27, 56, 109, 0.12);
   }
@@ -379,8 +379,8 @@ button:focus-visible {
   }
 
   .touch-dock button {
-    min-height: 58px;
-    font-size: 1rem;
+    min-height: 56px;
+    font-size: 0.98rem;
     font-weight: 700;
   }
 

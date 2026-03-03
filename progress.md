@@ -151,3 +151,10 @@ Original prompt: Build a classic Snake game in this repo.
   - Reserved app bottom padding to avoid control overlap.
   - Reduced scroll/bounce interference on coarse-pointer devices.
   - Kept desktop keyboard flow unchanged.
+
+## Progress update 24
+- Refined iOS control ergonomics:
+  - Moved touch dock outside main and anchored to viewport bottom.
+  - Converted utility controls (Restart/Pause/Sound) into small circular icon buttons on a separate fixed strip above touch dock.
+  - Increased reserved bottom space so controls do not overlap game board.
+  - Reduced mobile board footprint further for better touch area.
