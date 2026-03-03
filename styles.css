@@ -277,7 +277,7 @@ button:focus-visible {
   }
 }
 
-@media (pointer: coarse) {
+@media (pointer: coarse), (max-width: 900px) {
   body {
     min-height: 100dvh;
     height: 100dvh;
@@ -316,22 +316,26 @@ button:focus-visible {
   }
 
   .play-area {
-    grid-template-columns: 64px minmax(0, 1fr) 110px;
-    grid-template-areas: "utility board side";
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     gap: 0.34rem;
-    align-items: start;
   }
 
   #game {
     width: min(58vw, 252px);
     max-width: none;
-    margin: 0 auto;
+    margin: 0;
+    flex: 0 0 auto;
+    order: 2;
   }
 
   .side-panels {
-    grid-area: side;
     grid-template-columns: 1fr;
     gap: 0.26rem;
+    width: 108px;
+    flex: 0 0 108px;
+    order: 3;
   }
 
   .next-stack {
@@ -345,17 +349,19 @@ button:focus-visible {
   }
 
   .utility-controls {
-    grid-area: utility;
-    position: sticky;
-    top: 0.2rem;
+    position: static;
     z-index: 12;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
     gap: 0.26rem;
     margin: 0;
     padding: 0;
     background: transparent;
     border: 0;
+    width: 56px;
+    flex: 0 0 56px;
+    order: 1;
   }
 
   .utility-controls button {
