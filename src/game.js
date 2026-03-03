@@ -43,6 +43,7 @@ const soundBtn = document.querySelector("#sound-toggle");
 const nextEls = Array.from(document.querySelectorAll("[data-next-index]"));
 const holdEl = document.querySelector("[data-hold-piece]");
 const touchEl = document.querySelector(".touch");
+const touchButtons = Array.from(document.querySelectorAll(".touch-dock [data-action]"));
 
 const CELL = canvas.width / WIDTH;
 
@@ -377,6 +378,40 @@ function drawBoard() {
   }
 }
 
+function shapeToPreviewGrid(shape) {
+  const grid = Array.from({ length: 4 }, () => Array(4).fill(0));
+  const shapeHeight = shape.length;
+  const shapeWidth = shape[0].length;
+  const offsetY = Math.floor((4 - shapeHeight) / 2);
+  const offsetX = Math.floor((4 - shapeWidth) / 2);
+
+  for (let y = 0; y < shapeHeight; y += 1) {
+    for (let x = 0; x < shapeWidth; x += 1) {
+      grid[offsetY + y][offsetX + x] = shape[y][x];
+    }
+  }
+
+  return grid;
+}
+
+function renderGridToPanel(element, grid) {
+  element.textContent = "";
+  const fragment = document.createDocumentFragment();
+  const pieceGrid = document.createElement("div");
+  pieceGrid.className = "piece-grid";
+
+  for (const row of grid) {
+    for (const value of row) {
+      const cell = document.createElement("span");
+      cell.className = `next-cell${value ? ` fill-${value}` : ""}`;
+      pieceGrid.append(cell);
+    }
+  }
+
+  fragment.append(pieceGrid);
+  element.append(fragment);
+}
+
 function renderNextPanel() {
   for (const el of nextEls) {
     const index = Number(el.dataset.nextIndex);
@@ -386,16 +421,7 @@ function renderNextPanel() {
       continue;
     }
 
-    const shape = PIECES[pieceType];
-    const html = shape
-      .map((row) =>
-        row
-          .map((v) => `<span class=\"next-cell${v ? ` fill-${v}` : ""}\"></span>`)
-          .join("")
-      )
-      .join("<br>");
-
-    el.innerHTML = html;
+    renderGridToPanel(el, shapeToPreviewGrid(PIECES[pieceType]));
   }
 }
 
@@ -405,15 +431,34 @@ function renderPieceToPanel(element, pieceType) {
     return;
   }
 
-  const shape = PIECES[pieceType];
-  const html = shape
-    .map((row) =>
-      row
-        .map((v) => `<span class=\"next-cell${v ? ` fill-${v}` : ""}\"></span>`)
-        .join("")
-    )
-    .join("<br>");
-  element.innerHTML = html;
+  renderGridToPanel(element, shapeToPreviewGrid(PIECES[pieceType]));
+}
+
+function updateTouchButtonLabels(isCoarse) {
+  const iconMap = {
+    rotate: "⟲",
+    drop: "⤓",
+    hold: "✋",
+    left: "◀",
+    down: "▼",
+    right: "▶",
+  };
+  const labelMap = {
+    rotate: "Rotate",
+    drop: "Drop",
+    hold: "Hold",
+    left: "Left",
+    down: "Down",
+    right: "Right",
+  };
+
+  for (const button of touchButtons) {
+    const action = button.dataset.action;
+    if (!action) continue;
+    button.textContent = isCoarse ? iconMap[action] : labelMap[action];
+    button.title = labelMap[action];
+    button.setAttribute("aria-label", labelMap[action]);
+  }
 }
 
 function render() {
@@ -426,6 +471,7 @@ function render() {
   linesEl.textContent = String(state.lines);
   levelEl.textContent = String(state.level);
   statusEl.textContent = statusText();
+  updateTouchButtonLabels(isCoarse);
   if (isCoarse) {
     restartBtn.textContent = "↺";
     restartBtn.title = "Restart";

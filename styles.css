@@ -172,16 +172,24 @@ h1 {
   border: 1px solid rgba(193, 205, 228, 0.45);
   background: rgba(255, 255, 255, 0.52);
   padding: 0.2rem;
-  line-height: 0;
-  font-size: 0;
+  display: grid;
+  place-items: center;
+}
+
+.piece-grid {
+  display: grid;
+  grid-template-columns: repeat(4, var(--cell-size));
+  grid-template-rows: repeat(4, var(--cell-size));
+  gap: 1px;
 }
 
 .next-cell {
-  display: inline-block;
+  display: block;
   width: var(--cell-size);
   height: var(--cell-size);
   border: 1px solid rgba(255, 255, 255, 0.65);
   background: transparent;
+  border-radius: 3px;
 }
 
 .next-cell.fill-1 { background: #2a9d8f; }
@@ -344,7 +352,7 @@ button:focus-visible {
   }
 
   .next-piece {
-    min-height: 30px;
+    min-height: 34px;
     padding: 0.12rem;
   }
 
@@ -400,8 +408,10 @@ button:focus-visible {
 
   .touch-dock button {
     min-height: 56px;
-    font-size: 0.98rem;
+    font-size: 1.34rem;
     font-weight: 700;
+    line-height: 1;
+    padding: 0;
   }
 
   .hint {

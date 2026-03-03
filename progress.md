@@ -164,3 +164,8 @@ Original prompt: Build a classic Snake game in this repo.
 - Repositioned Hold/Next panels to the right of the game board on iOS.
 - Switched mobile layout to 3-column structure (utility | board | side) without overlaying the playfield.
 - Kept bottom touch dock fixed and separate.
+
+## Progress update 26
+- Converted iOS touch dock action buttons (Rotate/Drop/Hold/Left/Down/Right) to icon labels on coarse-pointer devices while keeping desktop text labels.
+- Reworked Hold/Next preview rendering to a normalized 4x4 grid per piece to prevent line-break/layout glitches on iPhone Safari.
+- Updated preview/touch CSS to align with the new fixed-grid rendering and clearer icon touch targets.
