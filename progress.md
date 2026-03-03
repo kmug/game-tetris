@@ -129,3 +129,12 @@ Original prompt: Build a classic Snake game in this repo.
 - Smoothed movement SFX to reduce choppy/overlapped playback:
   - Added per-SFX cooldown gate (`move/down/lock`).
   - Shortened and slightly softened `move` tone.
+
+## Progress update 20
+- Added GitHub Pages deployment workflow (`.github/workflows/pages.yml`).
+- Pushed workflow to origin/main to trigger automatic Pages deployment via GitHub Actions.
+
+## Progress update 21
+- Switched deployment strategy to non-Actions GitHub Pages.
+- Removed Actions Pages workflow file to avoid repeated Setup Pages failures.
+- Repository now ready for Pages deployment from `main` branch root.
