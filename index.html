@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>Tetris</h1>
+      <section class="hud" aria-live="polite">
+        <p>Score: <span id="score">0</span></p>
+        <p>Lines: <span id="lines">0</span></p>
+        <p>Level: <span id="level">1</span></p>
+        <p id="status">Running</p>
+      </section>
+
+      <section class="play-area">
+        <canvas id="game" width="300" height="600" aria-label="Tetris board"></canvas>
+        <aside class="side-panels">
+          <section class="hold-panel" aria-label="Held block">
+            <h2>Hold</h2>
+            <div class="next-piece hold-piece" data-hold-piece></div>
+          </section>
+          <section class="next-panel" aria-label="Next blocks">
+            <h2>Next</h2>
+            <div class="next-stack">
+              <div class="next-piece" data-next-index="0"></div>
+              <div class="next-piece" data-next-index="1"></div>
+              <div class="next-piece" data-next-index="2"></div>
+              <div class="next-piece" data-next-index="3"></div>
+              <div class="next-piece" data-next-index="4"></div>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="controls">
+        <button id="restart" type="button">Restart</button>
+        <button id="pause" type="button">Pause</button>
+        <button id="sound-toggle" type="button">Sound On</button>
+      </section>
+
+      <section class="touch" aria-label="Touch controls">
+        <button data-action="rotate" type="button">Rotate</button>
+        <button data-action="drop" type="button">Drop</button>
+        <button data-action="hold" type="button">Hold</button>
+        <div class="touch-row">
+          <button data-action="left" type="button">Left</button>
+          <button data-action="down" type="button">Down</button>
+          <button data-action="right" type="button">Right</button>
+        </div>
+      </section>
+
+      <p class="hint">← → 이동(홀드 지원), ↓ 소프트드롭, ↑ 회전, Space 하드드롭, C/Shift 홀드, P 일시정지, R 재시작, M 소리</p>
+    </main>
+
+    <script src="./src/tetris-logic.js"></script>
+    <script src="./src/game.js"></script>
+  </body>
+</html>

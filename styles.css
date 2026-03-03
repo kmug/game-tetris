@@ -1,0 +1,296 @@
+:root {
+  --bg-a: #dfe9ff;
+  --bg-b: #f5fbff;
+  --bg-c: #f6f4ff;
+  --glass: rgba(255, 255, 255, 0.42);
+  --glass-strong: rgba(255, 255, 255, 0.58);
+  --stroke: rgba(255, 255, 255, 0.68);
+  --stroke-soft: rgba(160, 174, 195, 0.28);
+  --text: #162033;
+  --muted: #536079;
+  --shadow: 0 20px 50px rgba(34, 63, 128, 0.18);
+  --cell-size: 12px;
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "SF Pro Display", "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(1100px 600px at 10% -10%, rgba(124, 176, 255, 0.46), transparent 55%),
+    radial-gradient(900px 520px at 100% 0%, rgba(153, 230, 255, 0.36), transparent 48%),
+    linear-gradient(145deg, var(--bg-a), var(--bg-b) 56%, var(--bg-c));
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  width: 240px;
+  height: 240px;
+  left: 5vw;
+  bottom: 8vh;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(180, 210, 255, 0.08));
+  filter: blur(2px);
+}
+
+body::after {
+  width: 300px;
+  height: 300px;
+  right: 8vw;
+  top: 8vh;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(170, 235, 255, 0.06));
+  filter: blur(4px);
+}
+
+.app {
+  position: relative;
+  width: min(96vw, 650px);
+  margin: 1.2rem auto;
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(160deg, var(--glass-strong), var(--glass));
+  backdrop-filter: blur(22px) saturate(155%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.app::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 10px;
+  height: 28%;
+  border-radius: 18px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+h1 {
+  margin: 0 0 0.7rem;
+  font-size: 1.38rem;
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-bottom: 0.78rem;
+}
+
+.hud p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0.42rem 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--stroke-soft);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.play-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 122px;
+  gap: 0.68rem;
+  align-items: start;
+}
+
+.side-panels {
+  display: grid;
+  gap: 0.55rem;
+}
+
+#game {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke-soft);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  display: block;
+}
+
+.next-panel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke-soft);
+  background: rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.45rem;
+}
+
+.hold-panel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke-soft);
+  background: rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.45rem;
+}
+
+.hold-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 0.94rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  color: #24324b;
+}
+
+.next-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 0.94rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  color: #24324b;
+}
+
+.next-stack {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.next-piece {
+  min-height: 42px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(193, 205, 228, 0.45);
+  background: rgba(255, 255, 255, 0.52);
+  padding: 0.2rem;
+  line-height: 0;
+  font-size: 0;
+}
+
+.next-cell {
+  display: inline-block;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+}
+
+.next-cell.fill-1 { background: #2a9d8f; }
+.next-cell.fill-2 { background: #e9c46a; }
+.next-cell.fill-3 { background: #457b9d; }
+.next-cell.fill-4 { background: #8ac926; }
+.next-cell.fill-5 { background: #e76f51; }
+.next-cell.fill-6 { background: #577590; }
+.next-cell.fill-7 { background: #f4a261; }
+
+.controls {
+  margin-top: 0.78rem;
+  display: flex;
+  gap: 0.46rem;
+}
+
+button {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.72), rgba(235, 244, 255, 0.5));
+  color: var(--text);
+  padding: 0.5rem 0.8rem;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  touch-action: manipulation;
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: 0 4px 12px rgba(52, 84, 138, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(52, 84, 138, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(46, 118, 255, 0.55);
+  outline-offset: 2px;
+}
+
+.touch {
+  margin-top: 0.75rem;
+  display: none;
+  gap: 0.45rem;
+  user-select: none;
+  touch-action: none;
+}
+
+.touch-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.touch button {
+  min-height: 52px;
+  font-size: 0.95rem;
+  font-weight: 620;
+}
+
+.hint {
+  margin-top: 0.78rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 620px) {
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .play-area {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .next-stack {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .next-piece {
+    min-height: 50px;
+  }
+}
+
+@media (pointer: coarse) {
+  .touch {
+    display: grid;
+  }
+
+  .controls button {
+    min-height: 44px;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .app,
+  .next-panel {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
