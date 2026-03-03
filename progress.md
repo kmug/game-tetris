@@ -174,3 +174,7 @@ Original prompt: Build a classic Snake game in this repo.
 - Switched mobile icon set to Google-provided Material Symbols Rounded via Google Fonts.
 - Replaced utility/touch emoji icons with Material icon names and icon-only rendering on coarse-pointer devices.
 - Added icon-specific button styles for consistent size/alignment on iOS.
+
+## Progress update 28
+- Fixed iPhone Next panel overlap by changing mobile Next stack from 5-column horizontal layout to single-column vertical layout.
+- Added overflow clipping on mini preview cards to prevent piece grid spill outside card bounds.

@@ -289,11 +289,14 @@ button:focus-visible {
   }
 
   .next-stack {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(36px, auto);
+    gap: 0.24rem;
   }
 
   .next-piece {
     min-height: 50px;
+    overflow: hidden;
   }
 }
 
@@ -359,13 +362,15 @@ button:focus-visible {
   }
 
   .next-stack {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.18rem;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(32px, auto);
+    gap: 0.2rem;
   }
 
   .next-piece {
     min-height: 34px;
     padding: 0.12rem;
+    overflow: hidden;
   }
 
   .utility-controls {
