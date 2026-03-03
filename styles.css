@@ -275,8 +275,10 @@ button:focus-visible {
 @media (pointer: coarse) {
   body {
     min-height: 100dvh;
+    height: 100dvh;
     overflow-x: hidden;
-    overscroll-behavior-y: none;
+    overflow-y: hidden;
+    overscroll-behavior: none;
     -webkit-user-select: none;
     user-select: none;
   }
@@ -284,10 +286,38 @@ button:focus-visible {
   .app {
     width: min(100vw, 680px);
     margin: 0 auto;
+    height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 0;
     border-left: 0;
     border-right: 0;
     padding-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.9rem);
+  }
+
+  .play-area {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  #game {
+    width: min(78vw, 340px);
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .side-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .next-stack {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.24rem;
+  }
+
+  .next-piece {
+    min-height: 40px;
   }
 
   .controls {
@@ -306,7 +336,7 @@ button:focus-visible {
     flex: 1;
   }
 
-  .touch {
+  .touch-dock {
     display: grid;
     position: fixed;
     left: 0;
@@ -321,19 +351,20 @@ button:focus-visible {
     box-shadow: 0 -8px 24px rgba(27, 56, 109, 0.12);
   }
 
-  .touch-row {
+  .touch-dock .touch-row {
     grid-column: 1 / -1;
     gap: 0.55rem;
   }
 
-  .touch button {
+  .touch-dock button {
     min-height: 58px;
     font-size: 1rem;
     font-weight: 700;
   }
 
   .hint {
-    margin-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom));
+    margin-bottom: calc(var(--touch-dock-h) + env(safe-area-inset-bottom) + 0.2rem);
+    font-size: 0.86rem;
   }
 }
 
