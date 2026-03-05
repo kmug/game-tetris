@@ -26,8 +26,8 @@ const COLORS = {
 };
 
 const INPUT_REPEAT = {
-  dasMs: 125,
-  arrMs: 34,
+  dasMs: 150,
+  arrMs: 45,
 };
 const MASTER_SFX_GAIN = 1.6;
 

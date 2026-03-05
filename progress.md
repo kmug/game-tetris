@@ -178,3 +178,8 @@ Original prompt: Build a classic Snake game in this repo.
 ## Progress update 28
 - Fixed iPhone Next panel overlap by changing mobile Next stack from 5-column horizontal layout to single-column vertical layout.
 - Added overflow clipping on mini preview cards to prevent piece grid spill outside card bounds.
+
+## Progress update 29
+- Slowed horizontal movement repeat for better control:
+  - DAS: 125ms -> 150ms
+  - ARR: 34ms -> 45ms
